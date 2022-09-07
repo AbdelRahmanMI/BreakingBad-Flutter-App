@@ -226,6 +226,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                       SizedBox(
+                        width: 180.0,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: const Color(0xFFf14436),
