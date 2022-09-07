@@ -1,10 +1,15 @@
+import 'package:breakingbad_project/business_logic/auth_bloc/auth_bloc.dart';
+import 'package:breakingbad_project/business_logic/auth_bloc/auth_event.dart';
+import 'package:breakingbad_project/business_logic/auth_bloc/auth_state.dart';
 import 'package:breakingbad_project/business_logic/characters_cubit.dart';
 import 'package:breakingbad_project/constants/colors.dart';
 import 'package:breakingbad_project/presentation/widgets/character_item.dart';
+import 'package:breakingbad_project/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/characters.dart';
+import '../../data/repository/auth_repositories.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -85,6 +90,16 @@ class _CharactersScreenState extends State<CharactersScreen> {
           'Characters',
           style: TextStyle(color: MyColors.mGrey),
         ),
+        actions: <Widget>[
+          IconButton(
+              onPressed: (){
+                context.read<AuthBloc>().add(LoggedOut());
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: MyColors.mGrey,
+              ))
+        ],
       ),
       body: buildBlocWidget(),
     );

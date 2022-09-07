@@ -135,7 +135,7 @@ class _LoginFormState extends State<LoginForm> {
                     obscureText: true,
                   ),
                   const SizedBox(
-                    height: 30.0,
+                    height: 10.0,
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -198,9 +198,6 @@ class _LoginFormState extends State<LoginForm> {
                       ),),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -229,7 +226,6 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                       SizedBox(
-                        width: 180.0,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: const Color(0xFFf14436),
@@ -254,11 +250,7 @@ class _LoginFormState extends State<LoginForm> {
 
                     ],
                   ),
-                  const SizedBox(
-                    height: 40.0,
-                  ),
                   Expanded(
-
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
@@ -288,9 +280,6 @@ class _LoginFormState extends State<LoginForm> {
                           )),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  )
                 ],
               ),
             ),
