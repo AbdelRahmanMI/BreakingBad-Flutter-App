@@ -35,7 +35,10 @@ dependencies:
   dio: 4.0.4
   json_serializable: 6.3.1
   flutter_offline: 2.0.0
-
+  rxdart: 0.27.3
+  flutter_secure_storage: 5.0.0
+  eva_icons_flutter: 3.0.0
+  flutter_svg: 1.0.1
 
 
 
