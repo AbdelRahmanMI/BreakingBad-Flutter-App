@@ -1,15 +1,14 @@
 import 'package:breakingbad_project/business_logic/auth_bloc/auth_bloc.dart';
 import 'package:breakingbad_project/business_logic/auth_bloc/auth_event.dart';
-import 'package:breakingbad_project/business_logic/auth_bloc/auth_state.dart';
 import 'package:breakingbad_project/business_logic/characters_cubit.dart';
 import 'package:breakingbad_project/constants/colors.dart';
+import 'package:breakingbad_project/data/models/language.dart';
+import 'package:breakingbad_project/main.dart';
 import 'package:breakingbad_project/presentation/widgets/character_item.dart';
-import 'package:breakingbad_project/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/models/characters.dart';
-import '../../data/repository/auth_repositories.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -86,19 +85,43 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColors.mYellow,
-        title: const Text(
-          'Characters',
-          style: TextStyle(color: MyColors.mGrey),
+        title: Text(
+          AppLocalizations.of(context)!.characters ,
+          style: const TextStyle(color: MyColors.mGrey),
         ),
         actions: <Widget>[
           IconButton(
-              onPressed: (){
-                context.read<AuthBloc>().add(LoggedOut());
-              },
+            onPressed: () {
+              context.read<AuthBloc>().add(LoggedOut());
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: MyColors.mGrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton<Language>(
+              underline: const SizedBox(),
               icon: const Icon(
-                Icons.logout,
+                Icons.language,
                 color: MyColors.mGrey,
-              ))
+              ),
+              onChanged: (Language? language) {
+                if(language!=null){
+                  BreakinBadApp.setLocale(context, Locale(language.languageCode,''));
+                }
+              },
+              items: Language.languageList()
+                  .map<DropdownMenuItem<Language>>(
+                    (e) => DropdownMenuItem<Language>(
+                  value: e,
+                  child: Text(e.name),
+                ),
+              )
+                  .toList(),
+            ),
+          ),
         ],
       ),
       body: buildBlocWidget(),

@@ -2,7 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../business_logic/login_bloc/login_bloc.dart';
 import '../../../business_logic/login_bloc/login_event.dart';
 import '../../../business_logic/login_bloc/login_state.dart';
@@ -78,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                         color: MyColors.titleColor,
                         fontWeight: FontWeight.bold),
                     controller: _usernameController,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(EvaIcons.emailOutline, color: Colors.black26),
                       enabledBorder: OutlineInputBorder(
@@ -89,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
                           borderRadius: BorderRadius.circular(30.0)),
                       contentPadding: const EdgeInsets.only(
                           left: 10.0, right: 10.0),
-                      labelText: "E-Mail",
+                      labelText: AppLocalizations.of(context)!.email,
                       hintStyle: const TextStyle(
                           fontSize: 12.0,
                           color: MyColors.grey,
