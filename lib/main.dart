@@ -1,3 +1,4 @@
+import 'package:breakingbad_project/data/models/language_constants.dart';
 import 'package:breakingbad_project/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +41,11 @@ class _BreakinBadAppState extends State<BreakinBadApp> {
       _locale = locale;
     });
   }
-
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) => setLocale(locale));
+    super.didChangeDependencies();
+  }
   final AppRouter appRouter = AppRouter();
 
   @override

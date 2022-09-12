@@ -3,6 +3,7 @@ import 'package:breakingbad_project/business_logic/auth_bloc/auth_event.dart';
 import 'package:breakingbad_project/business_logic/characters_cubit.dart';
 import 'package:breakingbad_project/constants/colors.dart';
 import 'package:breakingbad_project/data/models/language.dart';
+import 'package:breakingbad_project/data/models/language_constants.dart';
 import 'package:breakingbad_project/main.dart';
 import 'package:breakingbad_project/presentation/widgets/character_item.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
       appBar: AppBar(
         backgroundColor: MyColors.mYellow,
         title: Text(
-          AppLocalizations.of(context)!.characters ,
+          translation(context).characters ,
           style: const TextStyle(color: MyColors.mGrey),
         ),
         actions: <Widget>[
@@ -107,9 +108,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 Icons.language,
                 color: MyColors.mGrey,
               ),
-              onChanged: (Language? language) {
+              onChanged: (Language? language) async{
                 if(language!=null){
-                  BreakinBadApp.setLocale(context, Locale(language.languageCode,''));
+                  Locale _locale = await setLocale(language.languageCode);
+                  BreakinBadApp.setLocale(context, _locale);
                 }
               },
               items: Language.languageList()
